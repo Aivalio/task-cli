@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "task-cli"
+version = "0.1.0"
+description = "A simple CLI task manager"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Aivalio" }]
+
+[project.scripts]
+task = "task_cli.main:main"
+
+[tool.setuptools.packages.find]
+include = ["task_cli*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
