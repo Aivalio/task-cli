@@ -17,7 +17,7 @@ def load_tasks(file_path: str = TASKS_FILE) -> list[dict]:
         return []
 
     try:
-        with open(TASKS_FILE, "r", encoding="utf-8") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             response = json.load(file)
     except (json.JSONDecodeError, OSError, FileNotFoundError):
         return []
