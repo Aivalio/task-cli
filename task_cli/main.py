@@ -210,6 +210,69 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def interactive_mode() -> None:
+    """Run the CLI in interactive menu mode."""
+    while True:
+        print("\n============================")
+        print("       TASK CLI")
+        print("============================")
+        print("1. View tasks")
+        print("2. Add task")
+        print("3. Complete task")
+        print("4. Reopen task")
+        print("5. Delete task")
+        print("6. Search tasks")
+        print("7. Statistics")
+        print("8. Clear completed")
+        print("9. Exit")
+
+        choice = input("\nChoose an option: ").strip()
+
+        if choice == "1":
+            cmd_list(argparse.Namespace())
+        elif choice == "2":
+            title = input("Task title: ").strip()
+            if not title:
+                print_error("Title cannot be empty.")
+                continue
+            priority = input(f"Priority {PRIORITIES} (default {DEFAULT_PRIORITY}): ").strip() or DEFAULT_PRIORITY
+            due = input("Due date (YYYY-MM-DD, optional): ").strip()
+            cmd_add(argparse.Namespace(title=title, priority=priority, due=due))
+        elif choice == "3":
+            number = _ask_number("Task number to complete")
+            if number is not None:
+                cmd_complete(argparse.Namespace(number=number))
+        elif choice == "4":
+            number = _ask_number("Task number to reopen")
+            if number is not None:
+                cmd_reopen(argparse.Namespace(number=number))
+        elif choice == "5":
+            number = _ask_number("Task number to delete")
+            if number is not None:
+                cmd_delete(argparse.Namespace(number=number))
+        elif choice == "6":
+            keyword = input("Search keyword: ").strip()
+            cmd_search(argparse.Namespace(keyword=keyword))
+        elif choice == "7":
+            cmd_stats(argparse.Namespace())
+        elif choice == "8":
+            cmd_clear(argparse.Namespace())
+        elif choice == "9":
+            print("Goodbye!")
+            break
+        else:
+            print_error("Invalid option.")
+
+
+def _ask_number(prompt: str) -> int | None:
+    """Ask the user for a task number, returning None on invalid input."""
+    raw = input(f"{prompt}: ").strip()
+    if not raw.isdigit():
+        print_error("Please enter a valid number.")
+        return None
+    return int(raw)
+
+
 def main() -> None:
     """Entry point for the CLI."""
     parser = build_parser()
@@ -218,7 +281,9 @@ def main() -> None:
     if hasattr(args, "func"):
         args.func(args)
     else:
-        parser.print_help()
+        # No subcommand → interactive mode
+        interactive_mode()
+
 
 
 if __name__ == "__main__":
