@@ -8,6 +8,18 @@ A simple command-line task manager written in Python.
 
 ---
 
+## 📸 Screenshots
+
+| Task list | Statistics |
+|---|---|
+| ![Task list](docs/screenshots/list.jpg) | ![Statistics](docs/screenshots/stats.jpg) |
+
+| Interactive mode |
+|---|
+| ![Interactive](docs/screenshots/menu.jpg) |
+
+---
+
 ## ✨ Features
 
 - ➕ **Add** tasks with priority and due date
@@ -183,6 +195,8 @@ task-cli/
 │   ├── test_storage.py
 │   ├── test_tasks.py
 │   └── test_display.py
+├── docs/
+│   └── screenshots/
 ├── .gitignore
 ├── LICENSE
 ├── README.md
