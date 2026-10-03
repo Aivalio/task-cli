@@ -4,7 +4,7 @@ A simple command-line task manager written in Python.
 
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-33%20passed-brightgreen.svg)](#running-tests)
+[![Tests](https://github.com/Aivalio/task-cli/actions/workflows/tests.yml/badge.svg)](https://github.com/Aivalio/task-cli/actions/workflows/tests.yml)
 
 ---
 
